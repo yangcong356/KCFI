@@ -1,2 +1,2 @@
 # KCFI
-This is the official code for "Rethinking Remote Sensing Image Change Captioning: Perception of Key Changes"
+This is the official code for "Enhancing Perception of Key Changes in Remote Sensing Image Change Captioning"
