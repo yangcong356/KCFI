@@ -138,20 +138,21 @@ class LazySupervisedDataset(Dataset):
 
         # pdb.set_trace()
         if "image" in sources[0]:
-            image_file = self.list_data_dict[i]["image"]
-            image_file.append(label_file_name)
-            if len(image_file) > 3:
-                image_file.pop(3)
-            if type(image_file) is list:
-                image = [self.process_image(f) for f in image_file]
-                # Handling multi images
-                # overwrite to process with simple pad 
-                if len(image_file) > 1:
-                    image = [self.process_image(f) for f in image_file]
+            image_info = self.list_data_dict[i]["image"]
+            image_files = list(image_info) if isinstance(image_info, list) else [image_info]
+            image_files.append(label_file_name)
+            if len(image_files) > 3:
+                image_files = image_files[:3]
+            if isinstance(image_files, list):
+                image = [self.process_image(f) for f in image_files]
+                if len(image_files) > 1:
                     image = [[im[0], im[1], "image"] for im in image]
-                    label_seg = image.pop(2)
+                    label_seg = image.pop(-1)
+                else:
+                    label_seg = image[0]
             else:
-                image = [self.process_image(image_file)]
+                image = [self.process_image(image_files)]
+                label_seg = image[0]
             sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
         else:
             sources = copy.deepcopy([e["conversations"] for e in sources])
