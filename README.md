@@ -50,7 +50,7 @@ Minimal training JSON format:
     "conversations": [
       {
         "from": "human",
-        "value": "<image>\n<image>\nPlease describe the changes between the two temporal images."
+        "value": "<image>\nPlease describe the changes between the two temporal images."
       },
       {
         "from": "gpt",
@@ -74,7 +74,7 @@ Minimal test JSON format:
     "conversations": [
       {
         "from": "human",
-        "value": "<image>\n<image>\nDescribe the changes between the two images."
+        "value": "<image>\nDescribe the changes between the two images."
       }
     ]
   }
