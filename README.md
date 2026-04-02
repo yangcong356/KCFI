@@ -43,18 +43,18 @@ Minimal training JSON format:
   {
     "id": 0,
     "image": [
-      "train/A/sample_0001.png",
-      "train/B/sample_0001.png"
+      "train/A/train_000001.png",
+      "train/B/train_000001.png"
     ],
-    "label_gray": "train/label/sample_0001.png",
+    "label_gray": "train/label/train_000001.png",
     "conversations": [
       {
         "from": "human",
-        "value": "<image>\nPlease describe the changes between the two temporal images."
+        "value": "<image>\nThis is the change information of geographic targets extracted from remote sensing images. Does this information reveal any changes in the geographic targets? If so, please describe the changes."
       },
       {
         "from": "gpt",
-        "value": "New buildings appear along both sides of the road."
+        "value": "There is no difference."
       }
     ]
   }
@@ -74,7 +74,7 @@ Minimal test JSON format:
     "conversations": [
       {
         "from": "human",
-        "value": "<image>\nDescribe the changes between the two images."
+        "value": "<image>\nThis is the change information of geographic targets extracted from remote sensing images. Does this information reveal any changes in the geographic targets? If so, please describe the changes."
       }
     ]
   }
