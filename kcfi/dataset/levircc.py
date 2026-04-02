@@ -95,27 +95,13 @@ class LazySupervisedDataset(Dataset):
         return image, image_size, "image"
 
     def denormalize_tensor(self, tensor, mean, std, scale_factor):
-        """
-        对归一化后的 Tensor 进行逆归一化操作，并恢复到值为 0, 1, 2。
-        
-        参数:
-        - tensor: 归一化后的 Tensor，形状为 [224, 224, 3]。
-        - mean: 每个通道的均值，形状为 [3]。
-        - std: 每个通道的标准差，形状为 [3]。
-        
-        返回:
-        - 逆归一化后的 Tensor，值恢复为 0, 1, 2。
-        """
-        # 将 mean 和 std 转换为 Tensor
         mean = torch.tensor(mean).view(3, 1, 1).to(tensor.device)
         std = torch.tensor(std).view(3, 1, 1).to(tensor.device)
         
-        # 逆归一化：先乘以标准差，再加上均值
         tensor = (tensor * std + mean) / scale_factor
-        
-        # 四舍五入到最接近的整数，并确保值在 0, 1, 2 之间
+
         tensor = torch.round(tensor)
-        tensor = torch.clamp(tensor, min=0, max=2).long()
+        tensor = torch.clamp(tensor, min=0, max=1).long()
         
         return tensor
 
@@ -124,7 +110,6 @@ class LazySupervisedDataset(Dataset):
             sample = self._get_item(i)
             return sample
         except Exception as e:
-            # 如果发生异常，直接抛出异常
             raise RuntimeError(f"Failed to fetch sample {i}. Exception: {e}")
         
 
