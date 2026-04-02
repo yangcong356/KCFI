@@ -68,8 +68,8 @@ Minimal test JSON format:
   {
     "sample_id": 0,
     "image": [
-      "test/A/sample_0001.png",
-      "test/B/sample_0001.png"
+      "test/A/test_000001.png",
+      "test/B/test_000001.png"
     ],
     "conversations": [
       {
