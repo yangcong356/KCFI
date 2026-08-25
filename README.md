@@ -1,3 +1,5 @@
+
+
 # Enhancing Perception of Key Changes in Remote Sensing Image Change Captioning
 
 <font size=4><div align='center' > 
@@ -160,6 +162,7 @@ python vlmcap/tools/eval_score.py \
 
 This script reports both:
 - change caption metrics: `BLEU`, `METEOR`, `ROUGE_L`, `CIDEr`, etc.
+- change detection metrics for the predicted binary change maps
 
 ## Key Files
 
